@@ -13,23 +13,17 @@ const { ListNode } = require('../extensions/list-node.js');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
-
     constructor() {
-
         this.front = null;
         this.end = null;
-
     }
 
     getUnderlyingList() {
-
         return this.front;
-
     }
 
     enqueue(value) {
-
-        const newNode = new ListNode(value);
+        const newNode = { value, next: null };
 
         if (this.end) {
             this.end.next = newNode;
@@ -40,24 +34,21 @@ class Queue {
         if (!this.front) {
             this.front = newNode;
         }
-
     }
 
     dequeue() {
-
         if (!this.front) {
-            return null;
+            return undefined;
         }
 
         const value = this.front.value;
         this.front = this.front.next;
 
         if (!this.front) {
-            this.tail = null;
+            this.end = null;
         }
 
         return value;
-
     }
 }
 
